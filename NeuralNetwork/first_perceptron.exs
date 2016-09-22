@@ -1,3 +1,5 @@
+# Reference: https://erlangcentral.org/wiki/index.php?title=Erlang_and_Neural_Networks
+
 defmodule Ann do
   def sigmoid(x) do
     1.0 / (1.0 + :math.exp(-x) )
@@ -37,7 +39,6 @@ defmodule Ann do
         end
 
         if output_PIDs == [] do
-          #io.format("~n~w outputs: ~w", [self, output])
           IO.puts inspect [self, output]
         end
         perceptron(weights, new_inputs, output_PIDs)
@@ -48,12 +49,10 @@ defmodule Ann do
     IO.puts inspect input
     {input_PIDs, _} = input
     IO.puts inspect input_PIDs
-    #List.keyreplace(input_PIDs, 1, inputs, input)
     List.keyreplace(inputs, input_PIDs, 0, input)
   end
 
   def convert_to_list(inputs) do
-    #List.map(
     Enum.map(inputs,
     fn tup ->
       {_, val} = tup
